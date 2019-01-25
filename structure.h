@@ -40,6 +40,7 @@ data* insert(data*head,pointer_p buddy);      //it create a new node that counta
 void delete(data*head,pointer_p buddy);       //it delete a person from the linked list
 void sort(data* head);
 void disp(data*head);
+void Disp_Children(pointer_p DAD);
 
 
 #endif

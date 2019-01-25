@@ -40,6 +40,8 @@ int main(void)
   insert(head,salah);
   disp(head);
 
+
+
   //sort(head);
   //printf("OUR SORTED LIST:\n\n");
   // the result we're expecting :    dalia elaich ->  elbeghdadi salah  ->  eljebbari saad  ->  elmokhtari  abir  ->  elyousfi  ismail

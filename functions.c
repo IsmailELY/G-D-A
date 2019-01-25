@@ -4,7 +4,6 @@
 #include"structure.h"
 
 
-
 data* insert(data* head,pointer_p buddy)
 {
   data*p=(data*)malloc(sizeof(data));
@@ -84,4 +83,17 @@ void disp(data*head)
       printf("%s  %s  ->",i->human->NAME,i->human->Fst_NAME);
   }
   printf("\n\n");
+}
+
+// We're going to manage the children now :
+
+void Disp_Children(pointer_p DAD)
+{
+  for(data* i=head->next; i!=NULL; i->next)
+  {
+    if ((cmp_NAME(*i->*human->DAD.NAME, DAD.NAME))==1)
+    {
+      printf("%s", human->NAME);
+    }
+  }
 }
