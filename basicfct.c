@@ -4,16 +4,25 @@
 #include"structure.h"
 
 //a function that transform the important data of a person to uppercase
-void upper(pointer_p perso)
+void upper(pointer_p buddy)
 {
-  strupr(perso->NAME);
-  strupr(perso->ID);
-  strupr(perso->CIN);
-  strupr(perso->Fst_NAME);
+  strupr(buddy->NAME);
+  strupr(buddy->ID);
+  strupr(buddy->CIN);
+  strupr(buddy->Fst_NAME);
 }
 
+data* reach_the_tail(data*head)
+{
+  data* tail=head;
+  while(tail->next!=NULL)
+  {
+    tail=tail->next;
+  }
+  return tail;
+}
 
-pointer_p create_human(char NAME[20],char FST_NAME[20],char ID[10],char CIN[10],pointer_p DAD,pointer_p MOM)
+pointer_p create_human(char NAME[20],char FST_NAME[20],char ID[10],char CIN[10],pointer_p DAD,pointer_p MOM,int day,int month,int year)
 {
   pointer_p p=(pointer_p)malloc(sizeof(person));
 
@@ -23,6 +32,9 @@ pointer_p create_human(char NAME[20],char FST_NAME[20],char ID[10],char CIN[10],
   strcpy(p->CIN,CIN);
   p->DAD=DAD;                 //in case the mom or dad aren't identified
   p->MOM=MOM;                 //the user should write NULL as parameter
+  p->birth[0]=day;
+  p->birth[1]=month;
+  p->birth[2]=year;
 
   upper(p);   //to make sure that all characters are uppercase
 
@@ -30,56 +42,20 @@ pointer_p create_human(char NAME[20],char FST_NAME[20],char ID[10],char CIN[10],
 }
 
 
-
-data* insert(data* head,pointer_p budy)
+void swap_next(data*node1)
 {
-  data*p=(data*)malloc(sizeof(data));
-  data* seeker=head;
-
-  while(seeker->next!=NULL)   // we have to reach the last node in our linked list
-    seeker=seeker->next;
-
-  p->human=budy;
-  p->next=NULL;               // we add our new pointer properly
-  p->prev=seeker;
-
-  seeker->next=p;             //we associate the last node to the new one
-
-  return p;                   // the returning isn't necessarily important but it could be useful
-}
-
-
-void delete(data*head,pointer_p budy)
-{
-  data* seeker=head;
-  int flag=0;
-  char NAME[20],CIN[10];
-
-  strcpy(NAME,budy->NAME);
-  strcpy(CIN,budy->CIN);
-
-  while(flag==0 && seeker!=NULL)
-  {
-    if(strcmp(NAME,seeker->human->NAME)==0 && strcmp(CIN,seeker->human->CIN)==0 )
-      flag=1;
-    else
-      seeker=seeker->next;
-  }
-
-  if(flag==1 && seeker->next!=NULL)
-  {
-    seeker->prev->next=seeker->next;
-    seeker->next->prev=seeker->prev;
-    free(seeker);
-  }
-  else if(flag==1 && seeker->next==NULL)
-  {
-    seeker->prev->next=NULL;
-    free(seeker);
-  }
+  data* stock;
+  if(node1->next->next==NULL)
+    stock=NULL;
   else
-    printf("\n%s %s doesn't exist\n",budy->NAME,budy->Fst_NAME);
+    stock=node1->next->next;
+  node1->next->prev=node1->prev;
+  node1->prev=node1->next;
+  node1->next->next=node1;
+  node1->next=stock;
 }
+
+
 
 int cmp_ID(pointer_p P1, pointer_p P2)
 {
@@ -91,7 +67,7 @@ int cmp_ID(pointer_p P1, pointer_p P2)
   else
    x=0;
 
- return(x);
+ return x;
 }
 
 int cmp_NAME(pointer_p P1, pointer_p P2)
@@ -104,8 +80,9 @@ int cmp_NAME(pointer_p P1, pointer_p P2)
     x=-1;
   else
    x=0;
- return(x);
+  return x;
 }
+
 
 int cmp_FstNAME(pointer_p P1, pointer_p P2)
 {
@@ -116,8 +93,7 @@ int cmp_FstNAME(pointer_p P1, pointer_p P2)
     x=-1;
   else
    x=0;
-
- return(x);
+  return x;
 }
 
 int cmp_CIN(pointer_p P1,pointer_p P2)
@@ -129,6 +105,5 @@ int cmp_CIN(pointer_p P1,pointer_p P2)
     x=-1;
   else
    x=0;
-
-return (x);
+  return x;
 }

@@ -9,30 +9,40 @@ int main(void)
   data* head=(data*)malloc(sizeof(data));
   head->next=NULL;
 
-  pointer_p abir=create_human("elmokhtari","abir","000000000","ad123456",NULL,NULL);
-  data* p=insert(head,abir);
+  pointer_p abir=create_human("elmokhtari","abir","000000000","ad123456",NULL,NULL,6,9,1998);
+  insert(head,abir);
 
-  printf("\nlet's test if create_human works:\nabir %s\n",abir->NAME);
-  printf("\nlet's test if insert(from the node created) works:\nabir %s\n",p->human->NAME);
-  printf("\nlet's test if insert(from the head) works:\nabir %s\n",head->next->human->NAME);
+  pointer_p ismail=create_human("elyousfi","ismail","000000001","ad654321",NULL,NULL,7,2,1999);
+  insert(head,ismail);
+  printf("\nwe added ismail");
+  disp(head);
 
-  pointer_p ismail=create_human("elyousfi","ismail","000000001","ad654321",NULL,NULL);
-  p=insert(head,ismail);
+  delete(head,abir);
+  printf("\nwe deleted abir");
+  disp(head);
 
-  printf("\nwell ismail %s is successfully added\n",head->next->next->human->NAME);
-  /*delete(head,ismail);
-  if(head->next->next==NULL && strcmp(head->next->human->NAME,abir->NAME)==0)
-    printf("\nwe managed to delete ismail from the linked list\n");
-*/
-    printf("The comparison functions : ");
-    printf("\n");
-    printf("Let's compare the Ids : %d", cmp_ID(abir,abir));
-    printf("\n");
-    printf(" Let's compare the Names (Last names) : %d",cmp_NAME(abir,ismail));
-    printf("\n");
-    printf("Let's compare the First Names : %d",cmp_FstNAME(abir,ismail));
-    printf("\n");
-    printf("Let's compare the CIN numbers : %d " ,cmp_CIN(abir,ismail));
+  insert(head,abir);
+  printf("\nwe added abir again");
+  disp(head);
+
+  swap_next(head->next);
+  printf("\nwe switched ismail and abir");
+  disp(head);
+
+  printf("\n we'll add dalia and saad and salah to the list:");
+  pointer_p dalia=create_human("elaiche","dalia","000000002","ad000000",NULL,NULL,20,1,1998);
+  insert(head,dalia);
+
+  pointer_p saad=create_human("eljebbari","saad","000000003","ad546542",NULL,NULL,24,1,1999);
+  insert(head,saad);
+
+  pointer_p salah=create_human("elbeghdadi","salaheddine","000000004","ad951753",NULL,NULL,17,4,1998);
+  insert(head,salah);
+  disp(head);
+
+  //sort(head);
+  //printf("OUR SORTED LIST:\n\n");
+  // the result we're expecting :    dalia elaich ->  elbeghdadi salah  ->  eljebbari saad  ->  elmokhtari  abir  ->  elyousfi  ismail
 
   return 0;
 }
