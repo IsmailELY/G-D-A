@@ -30,4 +30,9 @@ pointer_p create_human(char NAME[20],char FST_NAME[20],char ID[10],char CIN[10],
 data* insert(data*head,pointer_p budy);      //it create a new node that countain a new person
 void delete(data*head,pointer_p budy);       //it delete a person from the linked list
 
+int cmp_ID(pointer_p P1, pointer_p P2);
+int cmp_NAME(pointer_p P1, pointer_p P2);
+int cmp_FstNAME(pointer_p P1, pointer_p P2);
+int cmp_CIN(pointer_p P1,pointer_p P2);
+
 #endif

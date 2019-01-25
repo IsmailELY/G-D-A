@@ -31,8 +31,6 @@ pointer_p create_human(char NAME[20],char FST_NAME[20],char ID[10],char CIN[10],
 
 
 
-
-
 data* insert(data* head,pointer_p budy)
 {
   data*p=(data*)malloc(sizeof(data));
@@ -81,4 +79,56 @@ void delete(data*head,pointer_p budy)
   }
   else
     printf("\n%s %s doesn't exist\n",budy->NAME,budy->Fst_NAME);
+}
+
+int cmp_ID(pointer_p P1, pointer_p P2)
+{
+  int x=0;
+   if(strcmp((P1->ID),(P2->ID))==0)
+    x=1;
+  else if (strcmp((P1->ID),(P2->ID))<0)
+    x=-1;
+  else
+   x=0;
+
+ return(x);
+}
+
+int cmp_NAME(pointer_p P1, pointer_p P2)
+{
+  int x=0;
+   if(strcmp((P1->NAME),(P2->NAME))==0)
+    x=1;
+
+  else if (strcmp((P1->NAME),(P2->NAME))<0)
+    x=-1;
+  else
+   x=0;
+ return(x);
+}
+
+int cmp_FstNAME(pointer_p P1, pointer_p P2)
+{
+  int x=0;
+   if(strcmp((P1->Fst_NAME),(P2->Fst_NAME))==0)
+    x=1;
+  else if (strcmp((P1->Fst_NAME),(P2->Fst_NAME))<0)
+    x=-1;
+  else
+   x=0;
+
+ return(x);
+}
+
+int cmp_CIN(pointer_p P1,pointer_p P2)
+{
+  int x=0;
+  if(strcmp((P1->CIN),(P2->CIN))==0)
+    x=1;
+  else if (strcmp((P1->CIN),(P2->CIN))<0)
+    x=-1;
+  else
+   x=0;
+
+return (x);
 }

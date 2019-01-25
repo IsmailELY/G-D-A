@@ -20,9 +20,19 @@ int main(void)
   p=insert(head,ismail);
 
   printf("\nwell ismail %s is successfully added\n",head->next->next->human->NAME);
-  delete(head,ismail);
+  /*delete(head,ismail);
   if(head->next->next==NULL && strcmp(head->next->human->NAME,abir->NAME)==0)
     printf("\nwe managed to delete ismail from the linked list\n");
+*/
+    printf("The comparison functions : ");
+    printf("\n");
+    printf("Let's compare the Ids : %d", cmp_ID(abir,abir));
+    printf("\n");
+    printf(" Let's compare the Names (Last names) : %d",cmp_NAME(abir,ismail));
+    printf("\n");
+    printf("Let's compare the First Names : %d",cmp_FstNAME(abir,ismail));
+    printf("\n");
+    printf("Let's compare the CIN numbers : %d " ,cmp_CIN(abir,ismail));
 
   return 0;
 }
