@@ -22,7 +22,7 @@ data* reach_the_tail(data*head)
   return tail;
 }
 
-pointer_p create_human(char NAME[20],char FST_NAME[20],char ID[10],char CIN[10],pointer_p DAD,pointer_p MOM,int day,int month,int year)
+pointer_p create_human(char NAME[20],char FST_NAME[20],char ID[10],char CIN[10],pointer_p DAD,pointer_p MUM,int day,int month,int year)
 {
   pointer_p p=(pointer_p)malloc(sizeof(person));
 
@@ -31,7 +31,7 @@ pointer_p create_human(char NAME[20],char FST_NAME[20],char ID[10],char CIN[10],
   strcpy(p->ID,ID);
   strcpy(p->CIN,CIN);
   p->DAD=DAD;                 //in case the mom or dad aren't identified
-  p->MOM=MOM;                 //the user should write NULL as parameter
+  p->MUM=MUM;                 //the user should write NULL as parameter
   p->birth[0]=day;
   p->birth[1]=month;
   p->birth[2]=year;
@@ -42,24 +42,14 @@ pointer_p create_human(char NAME[20],char FST_NAME[20],char ID[10],char CIN[10],
 }
 
 
-void swap_next(data*head,data*node)
+void swap_next(data*node)
 {
-  data  *stock;
-  int flag=0;
-  if(node->prev==head)
-    flag=1;
-
-  if(node->next->next==NULL)
-    stock=NULL;
-  else
-    stock=node->next->next;
-  node->next->prev=node->prev;
-  node->prev=node->next;
-  node->next->next=node;
-  node->next=stock;
-
-  if(flag==1)
-    head=node->prev->prev;
+  if(node->next!=NULL && node->prev!=NULL)
+  {
+    pointer_p stock=node->human;
+    node->human=node->next->human;
+    node->next->human=stock;
+  }
 }
 
 
@@ -67,12 +57,10 @@ void swap_next(data*head,data*node)
 int cmp_ID(pointer_p P1, pointer_p P2)
 {
   int x=0;
-   if(strcmp((P1->ID),(P2->ID))==0)
+   if(strcmp((P1->ID),(P2->ID))>0)
     x=1;
   else if (strcmp((P1->ID),(P2->ID))<0)
     x=-1;
-  else
-   x=0;
 
  return x;
 }
@@ -80,13 +68,12 @@ int cmp_ID(pointer_p P1, pointer_p P2)
 int cmp_NAME(pointer_p P1, pointer_p P2)
 {
   int x=0;
-   if(strcmp((P1->NAME),(P2->NAME))==0)
+   if(strcmp((P1->NAME),(P2->NAME))>0)
     x=1;
 
   else if (strcmp((P1->NAME),(P2->NAME))<0)
     x=-1;
-  else
-   x=0;
+
   return x;
 }
 
@@ -94,23 +81,21 @@ int cmp_NAME(pointer_p P1, pointer_p P2)
 int cmp_FstNAME(pointer_p P1, pointer_p P2)
 {
   int x=0;
-   if(strcmp((P1->Fst_NAME),(P2->Fst_NAME))==0)
+   if(strcmp((P1->Fst_NAME),(P2->Fst_NAME))>0)
     x=1;
   else if (strcmp((P1->Fst_NAME),(P2->Fst_NAME))<0)
     x=-1;
-  else
-   x=0;
+
   return x;
 }
 
 int cmp_CIN(pointer_p P1,pointer_p P2)
 {
   int x=0;
-  if(strcmp((P1->CIN),(P2->CIN))==0)
+  if(strcmp((P1->CIN),(P2->CIN))>0)
     x=1;
   else if (strcmp((P1->CIN),(P2->CIN))<0)
     x=-1;
-  else
-   x=0;
+  
   return x;
 }

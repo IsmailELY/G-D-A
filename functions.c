@@ -4,7 +4,6 @@
 #include"structure.h"
 
 
-
 data* insert(data* head,pointer_p buddy)
 {
   data*p=(data*)malloc(sizeof(data));
@@ -60,16 +59,17 @@ void sort(data*head)
   {
     for(data*j=head->next;j->next!=NULL;j=j->next)
     {
-      if(cmp_NAME(j->human,j->next->human)>0)
+      if(cmp_NAME(j->human,j->next->human)==1)
       {
-        swap_next(head,j);
+        swap_next(j);
       }
-      else if((cmp_NAME(j->human,j->next->human)==0) && (cmp_ID(j->human,j->next->human)>0))
+      else if((cmp_NAME(j->human,j->next->human)==0) && (cmp_ID(j->human,j->next->human)==1))
       {
-        swap_next(head,j);
+        swap_next(j);
       }
     }
   }
+  disp(head);
 }
 
 
@@ -84,4 +84,25 @@ void disp(data*head)
       printf("%s  %s  ->",i->human->NAME,i->human->Fst_NAME);
   }
   printf("\n\n");
+}
+
+// We're going to manage the children now :
+
+void Disp_Children(data* head,pointer_p DAD,pointer_p MUM)
+{
+  int j=0;
+
+  for(data* i=head->next; i!=NULL; i->next)
+  {
+    if (DAD!=NULL && cmp_NAME(i->human->DAD, DAD)==1)
+    {
+      j++;
+      printf("the kid No %d:%s %s\n",j,i->human->NAME,i->human->Fst_NAME);
+    }
+    else if(MUM!=NULL && cmp_NAME(i->human->MUM,MUM)==1)
+    {
+      j++;
+      printf("the kid No %d:%s %s\n",j,i->human->NAME,i->human->Fst_NAME);
+    }
+  }
 }

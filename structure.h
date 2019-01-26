@@ -9,7 +9,7 @@ typedef struct drop_of_life
   char  ID[10];
   char  CIN[10];
   struct drop_of_life  * DAD;
-  struct drop_of_life  * MOM;
+  struct drop_of_life  * MUM;
   int birth[3];
 }person;
 
@@ -26,13 +26,13 @@ typedef struct linked_list
 //basic functions:
 
 void upper(pointer_p buddy);                 //it turns the data of a person to uppercase
-pointer_p create_human(char NAME[20],char FST_NAME[20],char ID[10],char CIN[10],pointer_p DAD,pointer_p MOM,int day,int month,int year); //it create a new person
+pointer_p create_human(char NAME[20],char FST_NAME[20],char ID[10],char CIN[10],pointer_p DAD,pointer_p MUM,int day,int month,int year); //it create a new person
 data* reach_the_tail(data*head);             //it return the last node in our linked list
 int cmp_ID(pointer_p P1, pointer_p P2);
 int cmp_NAME(pointer_p P1, pointer_p P2);
 int cmp_FstNAME(pointer_p P1, pointer_p P2);
 int cmp_CIN(pointer_p P1,pointer_p P2);
-void swap_next(data*head,data*node);                 //switch place with the next
+void swap_next(data*node);                 //switch place with the next
 
 
 //functions:
@@ -40,6 +40,7 @@ data* insert(data*head,pointer_p buddy);      //it create a new node that counta
 void delete(data*head,pointer_p buddy);       //it delete a person from the linked list
 void sort(data* head);
 void disp(data*head);
+void Disp_Children(data* head,pointer_p DAD,pointer_p MUM);
 
 
 #endif

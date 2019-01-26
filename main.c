@@ -8,6 +8,7 @@ int main(void)
 {
   data* head=(data*)malloc(sizeof(data));
   head->next=NULL;
+  head->prev=NULL;
 
   pointer_p abir=create_human("elmokhtari","abir","000000000","ad123456",NULL,NULL,6,9,1998);
   insert(head,abir);
@@ -25,7 +26,7 @@ int main(void)
   printf("\nwe added abir again");
   disp(head);
 
-  swap_next(head,head->next);
+  swap_next(head->next);
   printf("\nwe switched ismail and abir");
   disp(head);
 
@@ -40,9 +41,12 @@ int main(void)
   insert(head,salah);
   disp(head);
 
-  //sort(head);
-  //printf("OUR SORTED LIST:\n\n");
-  // the result we're expecting :    dalia elaich ->  elbeghdadi salah  ->  eljebbari saad  ->  elmokhtari  abir  ->  elyousfi  ismail
+
+
+  printf("OUR SORTED LIST:\n\n");
+  sort(head);
+  //the result we're expecting :    dalia elaich ->  elbeghdadi salah  ->  eljebbari saad  ->  elmokhtari  abir  ->  elyousfi  ismail
+  //disp(head);
 
   return 0;
 }
