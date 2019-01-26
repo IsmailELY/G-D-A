@@ -62,11 +62,11 @@ void sort(data*head)
     {
       if(cmp_NAME(j->human,j->next->human)>0)
       {
-        swap_next(j);
+        swap_next(head,j);
       }
       else if((cmp_NAME(j->human,j->next->human)==0) && (cmp_ID(j->human,j->next->human)>0))
       {
-        swap_next(j);
+        swap_next(head,j);
       }
     }
   }

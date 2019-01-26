@@ -25,7 +25,7 @@ int main(void)
   printf("\nwe added abir again");
   disp(head);
 
-  swap_next(head->next);
+  swap_next(head,head->next);
   printf("\nwe switched ismail and abir");
   disp(head);
 

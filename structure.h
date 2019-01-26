@@ -32,7 +32,7 @@ int cmp_ID(pointer_p P1, pointer_p P2);
 int cmp_NAME(pointer_p P1, pointer_p P2);
 int cmp_FstNAME(pointer_p P1, pointer_p P2);
 int cmp_CIN(pointer_p P1,pointer_p P2);
-void swap_next(data*node1);                 //switch place with the next
+void swap_next(data*head,data*node);                 //switch place with the next
 
 
 //functions:

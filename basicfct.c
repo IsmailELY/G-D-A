@@ -42,17 +42,24 @@ pointer_p create_human(char NAME[20],char FST_NAME[20],char ID[10],char CIN[10],
 }
 
 
-void swap_next(data*node1)
+void swap_next(data*head,data*node)
 {
-  data* stock;
-  if(node1->next->next==NULL)
+  data  *stock;
+  int flag=0;
+  if(node->prev==head)
+    flag=1;
+
+  if(node->next->next==NULL)
     stock=NULL;
   else
-    stock=node1->next->next;
-  node1->next->prev=node1->prev;
-  node1->prev=node1->next;
-  node1->next->next=node1;
-  node1->next=stock;
+    stock=node->next->next;
+  node->next->prev=node->prev;
+  node->prev=node->next;
+  node->next->next=node;
+  node->next=stock;
+
+  if(flag==1)
+    head=node->prev->prev;
 }
 
 
