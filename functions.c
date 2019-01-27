@@ -41,6 +41,7 @@ void delete(data*head,pointer_p buddy)
   {
     seeker->prev->next=seeker->next;      //make sure that the previous node isn't pointing on the node that countains buddy
     seeker->next->prev=seeker->prev;      //we're doing the same thing for the next node
+
     free(seeker);
   }
   else if(flag==1 && seeker->next==NULL)  //that means our buddy is stored at the last node of our linked list
@@ -50,6 +51,8 @@ void delete(data*head,pointer_p buddy)
   }
   else
     printf("\n\aCette personne n'existe pas\n");  //flag=0
+
+
 }
 
 
@@ -100,7 +103,7 @@ void disp(data*head)
 pointer_p search_pers(data*head)
 {
   char DATA_1[20];
-  int mode=0;
+  int mode=0,N_DATA;
   pointer_p the_one=(pointer_p)malloc(sizeof(person));
   int flag=0;
   //initializing
@@ -124,16 +127,18 @@ pointer_p search_pers(data*head)
     switch(mode)                  //this will helps us out to insert the appropriate data
     {
       case 1:
-        printf("\nTappez le NOM :             ");
-        scanf("%s ",&DATA_1);
-        printf("\nTappezle PRENOM :           ");
-        scanf("%s ",&DATA_1);
 
+        printf("\nTappez le NOM :             ");
+        scanf("%s",&DATA_1);
         strcpy(the_one->NAME,DATA_1);
         strupr(the_one->NAME);
 
+        printf("\nTappezle PRENOM :           ");
+        scanf("%s",&DATA_1);
         strcpy(the_one->Fst_NAME,DATA_1);
         strupr(the_one->Fst_NAME);
+
+
 
         break;
 
@@ -146,9 +151,8 @@ pointer_p search_pers(data*head)
 
       case 3 :
         printf("\nTappez le ID:\t\t");
-        scanf("%s",&DATA_1);
-        strcpy(the_one->ID,DATA_1);
-        strupr(the_one->ID);
+        scanf("%d",&N_DATA);
+        the_one->ID=N_DATA;
         break;
 
       case 4 :
@@ -166,33 +170,37 @@ pointer_p search_pers(data*head)
 
   system("cls");
 
-  for(data*i=head->next;i!=NULL;i=i->next)        //We'll go throught our linked list and comparing the data
-  {                                               //of each person(node->human) and returning the first person
-    if(mode==1 && cmp_NAME(i->human,the_one)==0)  //whose data is compatible
-    {
-      flag=1;
-      the_one=i->human;
-      break;
-    }
-    else if(mode==2 && cmp_FstNAME(i->human,the_one)==0)
-    {
-      flag=1;
-      the_one=i->human;
-      break;
-    }
-    else if(mode==3 && cmp_ID(i->human,the_one)==0)
-    {
-      flag=1;
-      the_one=i->human;
-      break;
-    }
-    else if(mode==4 && cmp_CIN(i->human,the_one)==0)
-    {
-      flag=1;
-      the_one=i->human;
-      break;
+  if(the_one!=NULL)
+  {
+    for(data*i=head->next;i!=NULL;i=i->next)        //We'll go throught our linked list and comparing the data
+    {                                               //of each person(node->human) and returning the first person
+      if(mode==1 && cmp_NAME(i->human,the_one)==0)  //whose data is compatible
+      {
+        flag=1;
+        the_one=i->human;
+        break;
+      }
+      else if(mode==2 && cmp_FstNAME(i->human,the_one)==0)
+      {
+        flag=1;
+        the_one=i->human;
+        break;
+      }
+      else if(mode==3 && cmp_ID(i->human,the_one)==0)
+      {
+        flag=1;
+        the_one=i->human;
+        break;
+      }
+      else if(mode==4 && cmp_CIN(i->human,the_one)==0)
+      {
+        flag=1;
+        the_one=i->human;
+        break;
+      }
     }
   }
+
 
   if(flag==0)
   {
@@ -273,10 +281,8 @@ void change_data(data* head,pointer_p person)
 
       case 3:
         printf("\nTappez le nouveau ID:\n");
-        scanf("%s",&DATA);
-        memset(person->ID,0,5);
-        strcpy(person->ID,DATA);
-        strupr(person->ID);
+        scanf("%d",&N_DATA);
+        person->ID=N_DATA;
         break;
 
       case 4:
@@ -312,11 +318,10 @@ void change_data(data* head,pointer_p person)
         for(int j=0;j<N_DATA && j<20-person->N_child;j++)
         {
           printf("\nTappez l ID du nouvel enfant :\t");            //adding the child's ID
-          scanf("%s",&DATA);
-          strupr(DATA);
-          strcpy(person->children_ID[person->N_child+j],DATA);
+          scanf("%d",&N_DATA2);
+          person->children_ID[person->N_child+j]=N_DATA2;
+          person->N_child++;                           //updating the number of children
         }
-        person->N_child+=N_DATA;                           //updating the number of children
         break;
 
       case 7:
@@ -326,7 +331,7 @@ void change_data(data* head,pointer_p person)
           printf("|                                                                                    \n");
           for(int j=0;j<person->N_child;j++)
           {
-            printf("|                            %d) %s                                           \n",j,person->children_ID[j]);  // a menu to choose the ID to remove
+            printf("|                            %d) %d                                           \n",j,person->children_ID[j]);  // a menu to choose the ID to remove
             printf("|                                                                                    \n");
           }
           printf("|____________________________________________________________________________________\n");
@@ -337,16 +342,16 @@ void change_data(data* head,pointer_p person)
           for(int k=0;k<N_DATA;k++)
           {
 
-            printf("\n    -Choisis un ID :\t\t\t");
+            printf("\n    -Choisissez un ID :\t\t\t");
             scanf("%d",&N_DATA2);
 
             while(N_DATA2<person->N_child-2 && N_DATA2>-1)
             {
-              memset(person->children_ID[N_DATA2],0,5);       // delete process
-              strcpy(person->children_ID[N_DATA2],person->children_ID[N_DATA2+1]);
+                    // delete process
+              person->children_ID[N_DATA2]=person->children_ID[N_DATA2+1];
               N_DATA2++;
             }
-            memset(person->children_ID[N_DATA2],0,5);         //we empty the last ID
+            person->children_ID[N_DATA2]=0;         //we empty the last ID
             person->N_child--;                                //updating the number of children
           }
         break;

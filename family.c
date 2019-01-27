@@ -8,7 +8,8 @@
 // We're going to manage the children now :
 void Disp_DATA_Children(data* head,pointer_p person)
 {
-  char Sex;
+  system("cls");
+  char Sex,Quitter;
   int j=0;
   if(person->N_child!=0)
   {
@@ -16,15 +17,22 @@ void Disp_DATA_Children(data* head,pointer_p person)
     {
       for(int k=0;k<(person->N_child);k++)
       {
-        if (strcmp(i->human->ID,person->children_ID[k])==0)
+        if (i->human->ID==person->children_ID[k])
         {
           j++;
           if(i->human->sex==f)
             Sex='f';
           else
             Sex='m';
-          printf("\nKid No %d\n\tNAME:  %s\n\tFirst Name:  %s\n\tSex:  %c\n\tID:  %s\n\tCIN:  %s\n\tKids:  %d\n",j,i->human->NAME,i->human->Fst_NAME,Sex,i->human->ID,i->human->CIN,i->human->N_child);
+          printf("\nKid No %d\n\tNAME:  %s\n\tFirst Name:  %s\n\tSex:  %c\n\tID:  %d\n\tCIN:  %s\n\tKids:  %d\n",j,i->human->NAME,i->human->Fst_NAME,Sex,i->human->ID,i->human->CIN,i->human->N_child);
+
         }
+        printf("\n\n                                        Q) Quitter");
+        while(Quitter!='Q' && Quitter!='q')
+        {
+          scanf("%c",&Quitter);
+        }
+        system("cls");
       }
     }
   }
@@ -46,7 +54,7 @@ char* Parent_of_kid(data* head,pointer_p person,int mode)   //mode=1: mother | m
     {
       for(int j=0;j<i->human->N_child;j++)
       {
-        if(strcmp(person->ID,i->human->children_ID[j])==0)
+        if(person->ID==i->human->children_ID[j])
         {
           flag=1;
           strcpy(NAME,i->human->NAME);
@@ -61,19 +69,4 @@ char* Parent_of_kid(data* head,pointer_p person,int mode)   //mode=1: mother | m
   }
 
   return NAME;
-}
-
-
-//divorce =(
-void divorce(pointer_p P1,pointer_p P2)
-{
-  P1->spouse=NULL;
-  P2->spouse=NULL;
-}
-
-//happy wedding =)
-void marry(pointer_p P1,pointer_p P2)
-{
-  P1->spouse=P2;
-  P2->spouse=P1;
 }

@@ -7,12 +7,17 @@
 
 int main(void)
 {
+
   system("cls");
   login();
   data* head=(data*)malloc(sizeof(data));
   head->next=NULL;
   head->prev=NULL;
+  
+  read_data(head);
 
   MENU(head);
+
+  save_data(head);
 
 }

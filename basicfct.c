@@ -18,6 +18,8 @@ data* reach_the_tail(data*head)
 pointer_p create_enfant(data*head)
 {
   int N_DATA;
+  data* tail;
+
   system("cls");
   printf("\n############################################################################################\n");
   printf("#                                                                                          #\n");
@@ -52,12 +54,6 @@ pointer_p create_enfant(data*head)
   strupr(DATA);
   strcpy(p->Fst_NAME,DATA);
 
-  //ID:
-  printf("\nTappez l ID(4 chiffre):   ");
-  scanf("%s",&DATA);
-  strupr(DATA);
-  strcpy(p->ID,DATA);
-
   //CIN:
   printf("\nTappez le CIN :           ");
   scanf("%s",&DATA);
@@ -85,24 +81,34 @@ pointer_p create_enfant(data*head)
     else if(number==2)
       p->sex=m;
   }
-  //he's a kid so he doesn't have children yet nor a spouse
+
+  //we have to give him an ID
+  tail=reach_the_tail(head);
+  if(tail==head)
+    p->ID=1;
+  else
+    p->ID=(tail->human->ID)+1;
+
+
+  //he's a kid so he doesn't have children yet
   p->N_child=0;
-  p->spouse=NULL;
 
   //now we have to add those information to his parent's DATA
   switch(N_DATA)
   {
     case 4:
-      strcpy(DAD->ID,"");
-      strcpy(MUM->ID,"");
+      DAD->ID=0;
+      MUM->ID=0;
       break;
 
     case 3:
+      system("cls");
       printf("\n\n_________________________________________Le pere :________________________________________\n");
       sleep(2);
       DAD=NULL;
       while(DAD==NULL)
         {DAD=search_pers(head);}
+
       system("cls");
       printf("\n\n_________________________________________La mere :________________________________________\n");
       sleep(2);
@@ -118,31 +124,31 @@ pointer_p create_enfant(data*head)
       MUM=NULL;
       while(MUM==NULL)
         {MUM=search_pers(head);}
-      strcpy(DAD->ID,"");
+      DAD->ID=0;
       system("cls");
       break;
 
     case 1:
       printf("\n\n_________________________________________Le pere :________________________________________\n");
       sleep(2);
-      DAD==NULL;
+      DAD=NULL;
       while(DAD==NULL)
         {DAD=search_pers(head);}
-      strcpy(MUM->ID,"");
+      MUM->ID=0;
       system("cls");
       break;
   }
-  if (strcmp(DAD->ID,"")!=0)
+  if (DAD->ID!=0)
   {
 
-    strcpy(DAD->children_ID[DAD->N_child],p->ID);
+    DAD->children_ID[DAD->N_child]=p->ID;
     DAD->N_child++;
   }
-                                                    //if Parent's ID ="" that means the kid don't have a parent
-  if (strcmp(MUM->ID,"")!=0)
+                                                    //if Parent's ID =0 that means the kid don't have a parent
+  if (MUM->ID!=0)
   {
 
-    strcpy(MUM->children_ID[MUM->N_child],p->ID);
+    MUM->children_ID[MUM->N_child]=p->ID;
     MUM->N_child++;
   }
 
@@ -165,9 +171,9 @@ void swap_next(data*node)
 int cmp_ID(pointer_p P1, pointer_p P2)
 {
   int x=0;
-   if(strcmp((P1->ID),(P2->ID))>0)
+   if((P1->ID)>(P2->ID))
     x=1;
-  else if (strcmp((P1->ID),(P2->ID))<0)
+  else if ((P1->ID)<(P2->ID))
     x=-1;
 
  return x;

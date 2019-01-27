@@ -9,9 +9,9 @@ typedef struct drop_of_life
 {
   char  NAME[20];
   char  Fst_NAME[20];
-  int   ID;
+  int  ID;
   char  CIN[10];
-  int   children_ID[20];
+  int  children_ID[20];
   int   N_child;
   sex   sex;
   int   birth[3];
@@ -58,10 +58,13 @@ int age(pointer_p person);                               //calculate the exact a
 //family functions:
 void Disp_DATA_Children(data* head,pointer_p person);              //display children's data
 char* Parent_of_kid(data* head,pointer_p person,int mode);         //return the Name of mode(1:mother |2:father) of a kid
+void marry(pointer_p P1,pointer_p P2);                             //it marries two persons together
+void divorce(pointer_p P1,pointer_p P2);                           // separate them
 
 //FILES:
 void read_data(data*head);                                        //read and store all data in our linked list
-void save_data(data*head);                                        //save data of a new person to the existant data base
+void save_data(data*head,pointer_p person);                       //save data of a new person to the existant data base
+void delete_data(pointer_p person);                               //create a new data_list that don't contain data of a specific person
 
 
 
