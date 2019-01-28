@@ -37,26 +37,25 @@ pointer_p create_enfant(data*head)
   {  scanf("%d",&N_DATA); }
   system("cls");
   //initializing
-  sexe sexe;
   char DATA[20];
   int number;
   pointer_p p=(pointer_p)malloc(sizeof(person)),DAD=(pointer_p)malloc(sizeof(person)),MUM=(pointer_p)malloc(sizeof(person));
 
   //NAME:
   printf("\nTappez le NOM :           ");
-  scanf("%s",&DATA);
+  scanf("%s",DATA);
   strupr(DATA);
   strcpy(p->NAME,DATA);
 
   //Fst_NAME:
   printf("\nTappez le PRENOM :        ");
-  scanf("%s",&DATA);
+  scanf("%s",DATA);
   strupr(DATA);
   strcpy(p->Fst_NAME,DATA);
 
   //CIN:
   printf("\nTappez le CIN :           ");
-  scanf("%s",&DATA);
+  scanf("%s",DATA);
   strupr(DATA);
   strcpy(p->CIN,DATA);
 

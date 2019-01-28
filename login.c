@@ -11,12 +11,12 @@ void login()
   char password[20]="Ensias@2009";
   char attempt[20];
   printf("Mot de Passe:\t");
-  scanf("%s",&attempt);
+  scanf("%s",attempt);
 
   while(strcmp(attempt,password)!=0)
   {
     printf("\amot de passe errone !\nReessayez :\t");
-    scanf("%s",&attempt);
+    scanf("%s",attempt);
   }
 }
 
@@ -85,7 +85,7 @@ void verify(data* head)
   char password[20]="Ensias@2009";
   char attempt[20];
   printf("Veuillez reecrire le Mot de Passe :\t       ");
-  scanf("%s",&attempt);
+  scanf("%s",attempt);
 
   if(strcmp(attempt,password)!=0)
   {

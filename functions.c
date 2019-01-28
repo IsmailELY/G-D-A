@@ -150,7 +150,7 @@ pointer_p search_pers(data*head)
       case 2:
 
         printf("\nTappez le CIN:\t\t");
-        scanf("%s",&DATA_1);
+        scanf("%s",DATA_1);
         strcpy(the_one->CIN,DATA_1);
         strupr(the_one->CIN);
         break;
@@ -230,7 +230,7 @@ int age(pointer_p person)
 void change_data(data* head,pointer_p person)
 {
   char DATA[20];
-  int i,l,N_DATA,N_DATA2;
+  int i,N_DATA,N_DATA2;
   while(i!=8)
   {
     N_DATA=0;
@@ -262,7 +262,7 @@ void change_data(data* head,pointer_p person)
     {
       case 1:
         printf("\nTappez le nouveau NOM :\n");
-        scanf("%s",&DATA);
+        scanf("%s",DATA);
         memset(person->NAME,0,20);
         strcpy(person->NAME,DATA);
         strupr(person->NAME);
@@ -270,7 +270,7 @@ void change_data(data* head,pointer_p person)
 
       case 2:
         printf("\nTappez le nouveau PRENOM :\n");
-        scanf("%s",&DATA);
+        scanf("%s",DATA);
         memset(person->Fst_NAME,0,20);
         strcpy(person->Fst_NAME,DATA);
         strupr(person->Fst_NAME);
@@ -284,7 +284,7 @@ void change_data(data* head,pointer_p person)
 
       case 4:
         printf("\nTappez le nouveau CIN :\n");
-        scanf("%s",&DATA);
+        scanf("%s",DATA);
         memset(person->CIN,0,10);
         strcpy(person->CIN,DATA);
         strupr(person->CIN);

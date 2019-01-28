@@ -10,7 +10,7 @@
 void MENU(data* head)
 {
   data* NODE;
-  pointer_p NOBODY,NOBODY2;
+  pointer_p NOBODY;
   char DATA_1[20],DATA_2[20],*BIG_DATA=(char*)malloc(sizeof(50));
   int choice=10,N_DATA=0,N_DATA2=0;
   while (choice!=0)
@@ -156,7 +156,7 @@ void MENU(data* head)
         break;
 
       case 0:
-
+        system("cls");
         close_menu(head);
         break;
 
