@@ -16,9 +16,10 @@ void read_data(data*head)
   while(fread(data,sizeof(person),1,reader)!=0)
   {
     insert(head,data);
+    data=(pointer_p)malloc(sizeof(person));
   }
+
   fclose(reader);
-  free(data);
 }
 
 

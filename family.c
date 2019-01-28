@@ -9,22 +9,22 @@
 void Disp_DATA_Children(data* head,pointer_p person)
 {
   system("cls");
-  char Sex,Quitter;
+  char Sexe,Quitter;
   int j=0;
   if(person->N_child!=0)
   {
-    for(data* i=head->next; i!=NULL; i->next)
+    for(data* i=head->next; i!=NULL;i= i->next)
     {
       for(int k=0;k<(person->N_child);k++)
       {
         if (i->human->ID==person->children_ID[k])
         {
           j++;
-          if(i->human->sex==f)
-            Sex='f';
+          if(i->human->sexe==f)
+            Sexe='f';
           else
-            Sex='m';
-          printf("\nKid No %d\n\tNAME:  %s\n\tFirst Name:  %s\n\tSex:  %c\n\tID:  %d\n\tCIN:  %s\n\tKids:  %d\n",j,i->human->NAME,i->human->Fst_NAME,Sex,i->human->ID,i->human->CIN,i->human->N_child);
+            Sexe='m';
+          printf("\nKid No %d\n\tNAME:  %s\n\tFirst Name:  %s\n\tSexe:  %c\n\tID:  %d\n\tCIN:  %s\n\tKids:  %d\n",j,i->human->NAME,i->human->Fst_NAME,Sexe,i->human->ID,i->human->CIN,i->human->N_child);
 
         }
         printf("\n\n                                        Q) Quitter");
@@ -50,7 +50,7 @@ char* Parent_of_kid(data* head,pointer_p person,int mode)   //mode=1: mother | m
   // going through the list and search the parent
   for(data*i=head->next;i!=NULL;i=i->next)
   {
-    if((mode==1 && i->human->sex==f)||(mode==2 && i->human->sex==m)) //comparing the current id to the parent's child_id
+    if((mode==1 && i->human->sexe==f)||(mode==2 && i->human->sexe==m)) //comparing the current id to the parent's child_id
     {
       for(int j=0;j<i->human->N_child;j++)
       {

@@ -1,8 +1,8 @@
 #ifndef __STRUCT_H_
 #define __STRUCT_H_
 
-//a flag for sex, if the person is a man the flag will take the value 2 and if it's a woman it'll take the value 1
-typedef enum  sex{f=1 ,m}sex;
+//a flag for sexe, if the person is a man the flag will take the value 2 and if it's a woman it'll take the value 1
+typedef enum  sexe{f=1 ,m}sexe;
 
 //a struct countains data about a person
 typedef struct drop_of_life
@@ -13,7 +13,7 @@ typedef struct drop_of_life
   char  CIN[10];
   int   children_ID[20];
   int   N_child;
-  sex   sex;
+  sexe   sexe;
   int   birth[3];
 }person;
 

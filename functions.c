@@ -124,25 +124,31 @@ pointer_p search_pers(data*head)
     printf("|____________________________________________________________________________________|\n");
     printf("\n CHOIX:\t\t");
     scanf("%d",&mode);
+
+    while(mode!=1 && mode!=2 && mode!=3 && mode!=4)
+    {
+      printf("\n");
+      printf("\n\a                          Mode incorrect !\n");
+      scanf("%d",&mode);
+    }
+
     switch(mode)                  //this will helps us out to insert the appropriate data
     {
       case 1:
 
         printf("\nTappez le NOM :             ");
-        scanf("%s",&DATA_1);
+        scanf("%s",DATA_1);
         strcpy(the_one->NAME,DATA_1);
         strupr(the_one->NAME);
 
         printf("\nTappezle PRENOM :           ");
-        scanf("%s",&DATA_1);
+        scanf("%s",DATA_1);
         strcpy(the_one->Fst_NAME,DATA_1);
         strupr(the_one->Fst_NAME);
-
-
-
         break;
 
       case 2:
+
         printf("\nTappez le CIN:\t\t");
         scanf("%s",&DATA_1);
         strcpy(the_one->CIN,DATA_1);
@@ -156,43 +162,34 @@ pointer_p search_pers(data*head)
         break;
 
       case 4 :
-        the_one=NULL;
+        the_one->ID=0;
         flag=1;
         break;
 
-      default:
-        printf("\n");
-        printf("\n\a                          Mode incorrect !\n");
-        sleep(2);
-        break;
     }
   }
 
   system("cls");
 
-  if(the_one!=NULL)
+  if(the_one->ID!=0)
   {
-    for(data*i=head->next;i!=NULL;i=i->next)        //We'll go throught our linked list and comparing the data
-    {                                               //of each person(node->human) and returning the first person
-      if(mode==1 && cmp_NAME(i->human,the_one)==0)  //whose data is compatible
+    for(data*i=head->next;i!=NULL;i=i->next)                                                       //We'll go throught our linked list and comparing the data
+    {                                                                                              //of each person(node->human) and returning the first person
+      if(mode==1 && cmp_NAME(i->human,the_one)==0 && cmp_FstNAME(i->human,the_one)==0)             //whose data is compatible
       {
         flag=1;
         the_one=i->human;
         break;
       }
-      else if(mode==2 && cmp_FstNAME(i->human,the_one)==0)
+
+      else if(mode==2 && cmp_ID(i->human,the_one)==0)
       {
         flag=1;
         the_one=i->human;
         break;
       }
-      else if(mode==3 && cmp_ID(i->human,the_one)==0)
-      {
-        flag=1;
-        the_one=i->human;
-        break;
-      }
-      else if(mode==4 && cmp_CIN(i->human,the_one)==0)
+
+      else if(mode==3 && cmp_CIN(i->human,the_one)==0)
       {
         flag=1;
         the_one=i->human;
@@ -305,9 +302,9 @@ void change_data(data* head,pointer_p person)
       printf("############################################################################################\n");
         scanf("%d",&N_DATA);
         if(N_DATA==1)
-          person->sex=f;
+          person->sexe=f;
         else if(N_DATA==2)
-          person->sex=m;
+          person->sexe=m;
         else
           printf("\n\aErreur !\n");
         break;
