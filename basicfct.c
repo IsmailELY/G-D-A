@@ -88,7 +88,7 @@ pointer_p create_enfant(data*head)
     p->ID=1;
   else
     p->ID=(tail->human->ID)+1;
-
+  printf("ID : %d",p->ID);
 
   //he's a kid so he doesn't have children yet
   p->N_child=0;

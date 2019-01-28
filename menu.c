@@ -137,6 +137,16 @@ void MENU(data* head)
         sleep(3);
         break;
 
+      case 8:
+        system("cls");
+        NODE=(data*)malloc(sizeof(data));
+        NODE->human=search_pers(head);
+        if(NODE->human!=NULL && NODE->human->ID!=0)
+        {
+          acte_generator(NODE,head);
+        }
+        break;
+
       case 9:
         system("cls");
         NOBODY=search_pers(head);

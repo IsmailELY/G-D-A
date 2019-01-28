@@ -63,6 +63,8 @@ char* Parent_of_kid(data* head,pointer_p person,int mode);         //return the 
 void read_data(data*head);                                        //read and store all data in our linked list
 void save_data(data*head);                                        //save data of a new person to the existant data base
 
-
+//ACTES:
+int index_acte();
+void acte_generator(data *element,data*head);
 
 #endif

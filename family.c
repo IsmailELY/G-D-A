@@ -24,18 +24,18 @@ void Disp_DATA_Children(data* head,pointer_p person)
             Sexe='f';
           else
             Sexe='m';
-          printf("\nKid No %d\n\tNAME:  %s\n\tFirst Name:  %s\n\tSexe:  %c\n\tID:  %d\n\tCIN:  %s\n\tKids:  %d\n",j,i->human->NAME,i->human->Fst_NAME,Sexe,i->human->ID,i->human->CIN,i->human->N_child);
+          printf("\nKid No %d\n\tNAME:             %s\n\tFirst Name:  %s\n\tSexe:           %c\n\tID:             %d\n\tCIN:       %s\n\tKids:             %d\n",j,i->human->NAME,i->human->Fst_NAME,Sexe,i->human->ID,i->human->CIN,i->human->N_child);
 
         }
-        printf("\n\n                                        Q) Quitter");
-        while(Quitter!='Q' && Quitter!='q')
-        {
-          scanf("%c",&Quitter);
-        }
-        system("cls");
       }
     }
   }
+  printf("\n\n                                        Q) Quitter\n\n");
+  while(Quitter!='Q' && Quitter!='q')
+  {
+    scanf("%c",&Quitter);
+  }
+  system("cls");
 }
 
 

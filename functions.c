@@ -182,14 +182,14 @@ pointer_p search_pers(data*head)
         break;
       }
 
-      else if(mode==2 && cmp_ID(i->human,the_one)==0)
+      else if(mode==2 && cmp_CIN(i->human,the_one)==0)
       {
         flag=1;
         the_one=i->human;
         break;
       }
 
-      else if(mode==3 && cmp_CIN(i->human,the_one)==0)
+      else if(mode==3 && cmp_ID(i->human,the_one)==0)
       {
         flag=1;
         the_one=i->human;

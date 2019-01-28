@@ -13,7 +13,7 @@ int main(void)
   data* head=(data*)malloc(sizeof(data));
   head->next=NULL;
   head->prev=NULL;
-  
+
   read_data(head);
 
   MENU(head);
