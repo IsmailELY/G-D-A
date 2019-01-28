@@ -102,7 +102,7 @@ void MENU(data* head)
       case 5: // display the name of parent
         printf("\n\n_________________________________________Le fils :________________________________________\n");
         NOBODY=search_pers(head);
-        if(NOBODY!=NULL)
+        if(NOBODY!=NULL && NOBODY->ID!=0)
         {
           printf("\n############################################################################################\n");
           printf("#                                                                                          #\n");
@@ -113,7 +113,10 @@ void MENU(data* head)
           printf("#                                                                                          #\n");
           printf("############################################################################################\n");
           printf("\n ---->        ");
+          while(N_DATA!=1 && N_DATA!=2)
+          {
           scanf("%d",&N_DATA);
+          }
           strcpy(BIG_DATA,Parent_of_kid(head,NOBODY,N_DATA));
           printf("\n\n                                %s\n",BIG_DATA);
           sleep(5);

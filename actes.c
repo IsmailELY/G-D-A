@@ -111,4 +111,5 @@ void acte_generator(data *element,data*head)
 
       rename("acte.html",nv_info);
       fclose(fichier);
+      system("acte.html");
     }
