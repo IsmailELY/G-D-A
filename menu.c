@@ -10,8 +10,8 @@
 void MENU(data* head)
 {
   data* NODE;
-  pointer_p NOBODY;
-  char DATA_1[20],DATA_2[20],*BIG_DATA=(char*)malloc(sizeof(50));
+  pointer_p SBD;
+  char *BIG_DATA=(char*)malloc(sizeof(50));
   int choice=10,N_DATA=0,N_DATA2=0;
   while (choice!=0)
   {
@@ -48,19 +48,17 @@ void MENU(data* head)
 
     switch(choice)
     {
-      memset(DATA_1,0,20);
-      memset(DATA_2,0,20);
       case 1:
-        NOBODY=create_enfant(head);
-        insert(head,NOBODY);
+        SBD=create_enfant(head);
+        insert(head,SBD);
         break;
 
 
 
       case 2:     //DELETE A PERSON
         system("cls");
-        NOBODY=search_pers(head);
-        if(NOBODY!=NULL)
+        SBD=search_pers(head);
+        if(SBD!=NULL && SBD->ID!=0)
         {
           system("cls");                        //security
           printf("\n############################################################################################\n");
@@ -81,16 +79,17 @@ void MENU(data* head)
           if(N_DATA2==1)
           {
             verify(head);
+            delete(head,SBD);
           }
-          delete(head,NOBODY);
         }
+
         break;
 
 
       case 3:         //MODIFY DATA:
-        NOBODY=search_pers(head);
-        if(NOBODY!=NULL)
-          change_data(head,NOBODY);
+        SBD=search_pers(head);
+        if(SBD!=NULL && SBD->ID!=0)
+          change_data(head,SBD);
         break;
 
 
@@ -100,10 +99,12 @@ void MENU(data* head)
         break;
 
       case 5: // display the name of parent
-        printf("\n\n_________________________________________Le fils :________________________________________\n");
-        NOBODY=search_pers(head);
-        if(NOBODY!=NULL && NOBODY->ID!=0)
+        printf("\n\n________________________________________L'enfant :_______________________________________\n");
+        sleep(2);
+        SBD=search_pers(head);
+        if(SBD!=NULL && SBD->ID!=0)
         {
+          N_DATA=0;
           printf("\n############################################################################################\n");
           printf("#                                                                                          #\n");
           printf("#                                         CHOIX  :                                         #\n");
@@ -115,20 +116,20 @@ void MENU(data* head)
           printf("\n ---->        ");
           while(N_DATA!=1 && N_DATA!=2)
           {
-          scanf("%d",&N_DATA);
+            scanf("%d",&N_DATA);
           }
-          strcpy(BIG_DATA,Parent_of_kid(head,NOBODY,N_DATA));
+          strcpy(BIG_DATA,Parent_of_kid(head,SBD,N_DATA));
           printf("\n\n                                %s\n",BIG_DATA);
           sleep(5);
         }
         break;
 
       case 6: //show the exact age of a person
-        NOBODY=search_pers(head);
-        if(NOBODY!=NULL)
+        SBD=search_pers(head);
+        if(SBD!=NULL && SBD->ID!=0)
         {
           system("cls");
-          printf("\n\n\n                                L'age de   %s   %s   est :\n\n                                  --->      %d",NOBODY->NAME,NOBODY->Fst_NAME,age(NOBODY));
+          printf("\n\n\n                                L'age de   %s   %s   est :\n\n                                  --->      %d",SBD->NAME,SBD->Fst_NAME,age(SBD));
           sleep(5);
         }
         break;
@@ -142,9 +143,15 @@ void MENU(data* head)
 
       case 8:
         system("cls");
+
         NODE=(data*)malloc(sizeof(data));
-        NODE->human=search_pers(head);
-        if(NODE->human!=NULL && NODE->human->ID!=0)
+        do
+        {
+          NODE->human=search_pers(head);
+        }
+        while(NODE->human==NULL);
+
+        if(NODE->human->ID!=0)
         {
           acte_generator(NODE,head);
         }
@@ -152,9 +159,9 @@ void MENU(data* head)
 
       case 9:
         system("cls");
-        NOBODY=search_pers(head);
-        if(NOBODY!=NULL)
-          Disp_DATA_Children(head,NOBODY);
+        SBD=search_pers(head);
+        if(SBD!=NULL && SBD->ID!=0)
+          Disp_DATA_Children(head,SBD);
 
         break;
 
@@ -163,6 +170,9 @@ void MENU(data* head)
         close_menu(head);
         break;
 
+      default:
+        printf("\n\nERREUR !!\t\t");
+        break;
       }
     }
 }

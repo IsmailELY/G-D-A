@@ -8,17 +8,30 @@
 
 void login()
 {
-  char password[20]="Ensias@2009";
+  char password[20]="1";
   char attempt[20];
   printf("Mot de Passe:\t");
   scanf("%s",attempt);
+  int x=0,i=1;
+
 
   while(strcmp(attempt,password)!=0)
   {
-    printf("\amot de passe errone !\nReessayez :\t");
+
+    printf("\aMot de passe errone !\nReessayez :\t");
     scanf("%s",attempt);
+    x++;
+    if (x==5)
+      {
+        i++;
+        system("cls");
+        printf("Veuillez attendre quelques secondes, puis réessayez.");
+        sleep(30*i);
+        x=0;
+      }
   }
 }
+
 
 
 void close_menu(data*head)
@@ -82,7 +95,7 @@ void close_changefct(data* head,pointer_p person)
 
 void verify(data* head)
 {
-  char password[20]="Ensias@2009";
+  char password[20]="1";
   char attempt[20];
   printf("Veuillez reecrire le Mot de Passe :\t       ");
   scanf("%s",attempt);

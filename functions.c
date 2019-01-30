@@ -78,13 +78,24 @@ void sort(data*head)
 void disp(data*head)
 {
   char Quitter='a';
+  char sexe;
 
   printf("\n_______________________________La liste des personnes:______________________________\n");
   printf("|                                                                                    \n");
   for(data*i=head->next;i!=NULL;i=i->next)      //we're going through our linked list
   {
+    if(i->human->sexe==f)
+      sexe='f';
+    else
+      sexe='m';
+
     printf("|                                                                                    \n");
-    printf("|                             %s   %s\n",i->human->NAME,i->human->Fst_NAME);
+    printf("|               NOM et Prenom      :           %s   %s                                    \n",i->human->NAME,i->human->Fst_NAME);
+    printf("|               ID                 :           %d                                         \n",i->human->ID);
+    printf("|               CIN                :           %s                                         \n",i->human->CIN);
+    printf("|               Sexe               :           %c                                         \n",sexe);
+    printf("|               Nbre d'enfant      :           %d                                         \n",i->human->N_child);
+    printf("|               Date de naissance  :        %d / %d / %d                                  \n",i->human->birth[0],i->human->birth[1],i->human->birth[2]);
   }
   printf("|                                                                                    \n");
   printf("|                                                                Q) Quitter      \n");
@@ -110,7 +121,6 @@ pointer_p search_pers(data*head)
 
   while(mode!=1 && mode!=2 && mode!=3 && mode!=4)
   {
-    system("cls");
     printf("\n\n_________Choisissez le type de Data que vous connaissiez sur cette personne:_________\n");
     printf("|                                                                                    |\n");
     printf("|                                                                                    |\n");
@@ -136,12 +146,12 @@ pointer_p search_pers(data*head)
     {
       case 1:
 
-        printf("\nTappez le NOM :             ");
+        printf("\nTapez le NOM :             ");
         scanf("%s",DATA_1);
         strcpy(the_one->NAME,DATA_1);
         strupr(the_one->NAME);
 
-        printf("\nTappezle PRENOM :           ");
+        printf("\nTapezle PRENOM :           ");
         scanf("%s",DATA_1);
         strcpy(the_one->Fst_NAME,DATA_1);
         strupr(the_one->Fst_NAME);
@@ -149,14 +159,14 @@ pointer_p search_pers(data*head)
 
       case 2:
 
-        printf("\nTappez le CIN:\t\t");
+        printf("\nTapez le CIN:\t\t");
         scanf("%s",DATA_1);
         strcpy(the_one->CIN,DATA_1);
         strupr(the_one->CIN);
         break;
 
       case 3 :
-        printf("\nTappez le ID:\t\t");
+        printf("\nTapez le ID:\t\t");
         scanf("%d",&N_DATA);
         the_one->ID=N_DATA;
         break;
@@ -165,13 +175,12 @@ pointer_p search_pers(data*head)
         the_one->ID=0;
         flag=1;
         break;
-
     }
   }
 
   system("cls");
 
-  if(the_one->ID!=0)
+  if(mode!=4)
   {
     for(data*i=head->next;i!=NULL;i=i->next)                                                       //We'll go throught our linked list and comparing the data
     {                                                                                              //of each person(node->human) and returning the first person
@@ -230,7 +239,7 @@ int age(pointer_p person)
 void change_data(data* head,pointer_p person)
 {
   char DATA[20];
-  int i,N_DATA,N_DATA2;
+  int i=0,N_DATA,N_DATA2;
   while(i!=8)
   {
     N_DATA=0;
@@ -258,32 +267,31 @@ void change_data(data* head,pointer_p person)
     scanf("%d",&i);
 
     system("cls");
+
     switch(i)
     {
       case 1:
-        printf("\nTappez le nouveau NOM :\n");
+        printf("\nTapez le nouveau NOM :\n");
         scanf("%s",DATA);
-        memset(person->NAME,0,20);
         strcpy(person->NAME,DATA);
         strupr(person->NAME);
         break;
 
       case 2:
-        printf("\nTappez le nouveau PRENOM :\n");
+        printf("\nTapez le nouveau PRENOM :\n");
         scanf("%s",DATA);
-        memset(person->Fst_NAME,0,20);
         strcpy(person->Fst_NAME,DATA);
         strupr(person->Fst_NAME);
         break;
 
       case 3:
-        printf("\nTappez le nouveau ID:\n");
+        printf("\nTapez le nouveau ID:\n");
         scanf("%d",&N_DATA);
         person->ID=N_DATA;
         break;
 
       case 4:
-        printf("\nTappez le nouveau CIN :\n");
+        printf("\nTapez le nouveau CIN :\n");
         scanf("%s",DATA);
         memset(person->CIN,0,10);
         strcpy(person->CIN,DATA);
@@ -310,11 +318,11 @@ void change_data(data* head,pointer_p person)
         break;
 
       case 6:
-        printf("Tappez le nombre d enfant que vous voulez ajouter :\t\t");     //fixing the number of child to Add
+        printf("Tapez le nombre d enfant que vous voulez ajouter :\t\t");     //fixing the number of children to Add
         scanf("%d",&N_DATA);
-        for(int j=0;j<N_DATA && j<20-person->N_child;j++)
+        for(int j=0;j<N_DATA && j<20-(person->N_child);j++) //on a deux conditions d'arrêt : la 1ere <nombre souhaité et la 2eme <nombre d'enfants permis (20)
         {
-          printf("\nTappez l ID du nouvel enfant :\t");            //adding the child's ID
+          printf("\nTapez l ID du nouvel enfant :\t");            //adding the child's ID
           scanf("%d",&N_DATA2);
           person->children_ID[person->N_child+j]=N_DATA2;
           person->N_child++;                           //updating the number of children
@@ -333,7 +341,7 @@ void change_data(data* head,pointer_p person)
           }
           printf("|____________________________________________________________________________________\n");
 
-          printf("\n\n                 Tappez le nombre d enfant que vous voulez enlever:\t\t");
+          printf("\n\n                 Tapez le nombre d enfant que vous voulez enlever:\t\t");
           scanf("%d",&N_DATA);
 
           for(int k=0;k<N_DATA;k++)

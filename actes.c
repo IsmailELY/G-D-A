@@ -87,19 +87,19 @@ void acte_generator(data *element,data*head)
       printf("enter votre Etat :\n");
       scanf("%s",nv_info);
       fprintf(fichier, "<caption>1-ÉTAT : %s      ",nv_info);
-      printf("c est le service d'etat civil de quelle ville ?\n");
+      printf("C'est le service d'etat civil de quelle ville ?\n");
       scanf("%s",nv_info);
 
       fprintf(fichier, "2-SERVICE DE L’ÉTAT CIVIL DE : %s </caption>\n",nv_info);
       fputs("<thead> <!-- En-tête du tableau --> \n <tr>\n",fichier);
       fprintf(fichier, "<th colspan=""4"">3 EXTRAIT DE L’ACTE DE NAISSANCE N° : %d </th>\n",index);
-      fputs("</tr>\n</thead>\n<tfoot> <!-- Pied de tableau -->\n<tr>\n<th>11</th>",fichier);
+      fputs("</tr>\n</thead>\n<tfoot> <!-- Pied de tableau -->\n<tr>\n<th>10</th>",fichier);
       fputs("</tr>\n</tfoot>\n<tbody> <!-- Corps du tableau -->\n<tr>\n<td>4</td>\n",fichier);
       printf("si vous voulez entrer autres enonciations de l'acte veuillez l'entrer :\n");
       scanf("%s",nv_info);
       fprintf(fichier,"<td colspan=""3"">DATE ET LIEU DE NAISSANCE: %d/%d/%d</td> \n </tr> \n<tr> \n     <td>5</td> \n     <td colspan=""3"">NOM: %s</td> \n </tr> \n<tr> \n<td>6</td> \n     <td colspan=""3"">PRENOM: %s</td> \n </tr> \n<tr> \n     <td>7</td> \n     <td>SEXE: %s</td> \n     <td>8-PERE</td> \n<td>9-MERE</td> \n </tr> \n<tr> \n     <td>5</td> \n     <td>NOM</td> \n     <td>%s</td> \n     <td>%s</td> \n </tr> \n<tr> \n     <td>6</td> \n     <td>PRENOM</td> \n     <td>%s</td> \n     <td>%s</td> \n </tr> \n<tr> \n 	<td>10</td> \n 	<td colspan=""3"">AUTRES ÉNONCIATIONS DE L’ACTE:%s</td>\n",element->human->birth[0],element->human->birth[1],element->human->birth[2],element->human->NAME,element->human->Fst_NAME,sexe,element_pere->human->NAME,element_mere->human->NAME,element_pere->human->Fst_NAME,element_mere->human->Fst_NAME,nv_info);
       fputs("</tr>\n</tbody>\n</table>\n</html>",fichier);
-      printf("entrer le nom sous le quel l'acte sera enregistrer :\n");
+      printf("entrer le nom sous le quel l'acte sera enregistree :\n");
       scanf("%s",nv_info);
       longueur=strlen(nv_info);
       nv_info[longueur]='.';
