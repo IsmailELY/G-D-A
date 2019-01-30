@@ -8,7 +8,7 @@
 
 void login()
 {
-  char password[20]="1";
+  char password[20]="Ensias@2009";
   char attempt[20];
   printf("Mot de Passe:\t");
   scanf("%s",attempt);
@@ -95,7 +95,7 @@ void close_changefct(data* head,pointer_p person)
 
 void verify(data* head)
 {
-  char password[20]="1";
+  char password[20]="Ensias@2009";
   char attempt[20];
   printf("Veuillez reecrire le Mot de Passe :\t       ");
   scanf("%s",attempt);

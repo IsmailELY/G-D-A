@@ -16,7 +16,7 @@ void MENU(data* head)
   while (choice!=0)
   {
     system("cls");
-    printf("\n#####################  Projet C Gestion des actes   #####################\n");
+    printf("\n#####################  Projet C Gestion des actes   ######################\n");
     printf("#                                                                        #\n");
     printf("#                                 MENU:                                  #\n");
     printf("#                                                                        #\n");
@@ -87,6 +87,7 @@ void MENU(data* head)
 
 
       case 3:         //MODIFY DATA:
+        system("cls");
         SBD=search_pers(head);
         if(SBD!=NULL && SBD->ID!=0)
           change_data(head,SBD);

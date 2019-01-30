@@ -51,8 +51,6 @@ void delete(data*head,pointer_p buddy)
   }
   else
     printf("\n\aCette personne n'existe pas\n");  //flag=0
-
-
 }
 
 
